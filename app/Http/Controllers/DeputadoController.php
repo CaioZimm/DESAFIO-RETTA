@@ -24,8 +24,10 @@ class DeputadoController extends Controller
 
     public function show($id){
         $deputado = Deputado::findOrFail($id);
-        $despesas = $deputado->despesas()->orderBy('dataDocumento', 'desc')->paginate(20);
+        $despesas = $deputado->despesas()->orderBy('data_documento', 'desc')->paginate(20);
 
-        return view('deputados.show', compact('deputado', 'despesas'));
+        $total_despesas = $deputado->despesas()->sum('valor_documento');
+
+        return view('deputados.show', compact('deputado', 'despesas', 'total_despesas'));
     }
 }

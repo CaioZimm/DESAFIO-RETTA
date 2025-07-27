@@ -1,6 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold mb-3"> Despesas de {{ $deputado->nome }} </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl">
+                Despesas de {{ $deputado->nome }}
+            </h2>
+
+            <div class="text-right">
+                <span class="text-sm text-gray-500">Total Gasto</span>
+                <p class="font-bold text-2xl text-red-600">
+                    R$ {{ number_format($total_despesas, 2, ',', '.') }}
+                </p>
+            </div>
     </x-slot>
 
     <div class="py-8">
@@ -23,10 +33,10 @@
                                 <tbody class="divide-y divide-gray-200">
                                     @foreach ($despesas as $despesa)
                                         <tr>
-                                            <td class="py-4 px-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($despesa->dataDocumento)->format('d/m/Y') }}</td>
+                                            <td class="py-4 px-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($despesa->data_documento)->format('d/m/Y') }}</td>
                                             <td class="py-4 px-4">{{ $despesa->fornecedor }}</td>
-                                            <td class="py-4 px-4">{{ $despesa->tipoDespesa }}</td>
-                                            <td class="py-4 px-4 text-right whitespace-nowrap text-red-600 font-semibold">R$ {{ number_format($despesa->valorDocumento, 2, ',', '.') }}</td>
+                                            <td class="py-4 px-4">{{ $despesa->tipo_despesa }}</td>
+                                            <td class="py-4 px-4 text-right whitespace-nowrap text-red-600 font-semibold">R$ {{ number_format($despesa->valor_documento, 2, ',', '.') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
