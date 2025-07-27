@@ -31,6 +31,6 @@ class SincronizarDadosDeputados extends Command
     public function handle()
     {
         $this->deputadoService->sincronizarDeputados();
-        $this->info('Sincronização de deputados concluída com sucesso!');
+        $this->info('Sincronização de deputados iniciada...');
     }
 }
